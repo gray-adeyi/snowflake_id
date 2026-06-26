@@ -1,6 +1,6 @@
 #include <time.h>
 #include <stdint.h>
-#include "../include/snowflake_id.h"
+#include "snowflake_id.h"
 #include <stdlib.h>
 
 Snowflake_id_generator_t* snowflake_id_generator_new(uint64_t epoch, uint_t instance){
@@ -23,8 +23,8 @@ snowflake_id_t snowflake_id_generate(Snowflake_id_generator_t* g) {
     clock_gettime(CLOCK_REALTIME, &ts);
 
     snowflake_id_t id = 0;
-    int64_t timestamp_ms =
-        (int64_t)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000;
+    uint64_t timestamp_ms =
+        (uint64_t)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000;
   if(g->epoch != 0) {
     timestamp_ms -= g->epoch;
   }
