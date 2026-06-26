@@ -1,9 +1,14 @@
 #ifndef SNOWFLAKE_ID_H
 #define SNOWFLAKE_ID_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 // A representation of a snowflake ID
-typedef int64_t snowflake_id_t;
+typedef uint64_t snowflake_id_t;
 
 
 // This is the generator used to create the
@@ -40,4 +45,9 @@ Snowflake_id_info_t* snowflake_id_get_info(snowflake_id_t id);
 
 // Free the memory used by an info
 void snowflake_id_info_free(Snowflake_id_info_t* i);
+
+#ifdef __cplusplus
+}
 #endif
+
+#endif /* SNOWFLAKE_ID_H */
