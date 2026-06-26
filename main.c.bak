@@ -2,22 +2,22 @@
 #include <stdio.h>
 #include "snowflake_id.h"
 
-void report(snowflake_id_t id, Snowflake_id_info_t info);
+void report(snowflake_id_t id, Snowflake_id_info_t* info);
 
 int main(void){
-  Snowflake_id_generator_t g = snowflake_id_generator_new(0, 128);
-  for(int i =0; i < 1000000; ++i){
-  snowflake_id_t my_id = snowflake_id_generate(&g);
-Snowflake_id_info_t info = snowflake_id_get_info(my_id);
+  Snowflake_id_generator_t* g = snowflake_id_generator_new(0, 1025);
+  for(int i =0; i < 10; ++i){
+  snowflake_id_t my_id = snowflake_id_generate(g);
+Snowflake_id_info_t* info = snowflake_id_get_info(my_id);
     report(my_id,info);
   }
 }
 
 
-void report(snowflake_id_t id, Snowflake_id_info_t info){
+void report(snowflake_id_t id, Snowflake_id_info_t* info){
 printf("For snowflake id: %ld\ntimestamp: %lu\ninstance:\n%d\nsequence: %d\n\n",
          id,
-         info.timestamp,
-         info.instance,
-         info.sequence);
+         info->timestamp,
+         info->instance,
+         info->sequence);
 }
